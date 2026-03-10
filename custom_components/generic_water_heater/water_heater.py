@@ -195,13 +195,7 @@ class GenericWaterHeater(WaterHeaterEntity, RestoreEntity):
         else:
             self._attr_available = True
             _LOGGER.debug("%s became Available", self.name)
-            if new_state.state == STATE_ON and self._current_operation == STATE_OFF:
-                self._current_operation = STATE_ON
-                _LOGGER.debug("STATE_ON")
-            elif new_state.state == STATE_OFF and self._current_operation == STATE_ON:
-                self._current_operation = STATE_OFF
-                _LOGGER.debug("STATE_OFF")
-
+        
         self.async_write_ha_state()
 
     async def _async_control_heating(self):
